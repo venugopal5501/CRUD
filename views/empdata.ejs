@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    
+    <% if(action === 'add') { %>
+        <!-- Add your form here -->
+    <% } else { %>
+        <table border="">
+            <tr>
+                <th>EmpNo</th>
+                <th>Name</th>
+                <th>Job</th>
+                <th>Mgr_ID</th>
+                <th>Hiredate</th>
+                <th>Sal</th>
+                <th>Deptno</th>
+            </tr>
+            <% if(employeedata && employeedata.length > 0) { %>
+                <% employeedata.forEach(function(data) { %>
+                    <tr>
+                        <td><%= data.EmpNo %></td>
+                        <td><%= data.Name %></td>
+                        <td><%= data.Job %></td>
+                        <td><%= data.Mgr_ID %></td>
+                        <td><%= data.Hiredate %></td>
+                        <td><%= data.Sal %></td>
+                        <td><%= data.Deptno %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr><td>No Data Found</td></tr>
+            <% } %>
+        </table>
+    <% } %>
+</body>
+</html>
