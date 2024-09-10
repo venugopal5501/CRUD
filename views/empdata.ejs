@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1><%= title %></h1>
-    
-    <% if(action === 'add') { %>
-        <!-- Add your form here -->
-    <% } else { %>
-        <table border="">
-            <tr>
-                <th>EmpNo</th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Mgr_ID</th>
-                <th>Hiredate</th>
-                <th>Sal</th>
-                <th>Deptno</th>
-            </tr>
-            <% if(employeedata && employeedata.length > 0) { %>
-                <% employeedata.forEach(function(data) { %>
-                    <tr>
-                        <td><%= data.EmpNo %></td>
-                        <td><%= data.Name %></td>
-                        <td><%= data.Job %></td>
-                        <td><%= data.Mgr_ID %></td>
-                        <td><%= data.Hiredate %></td>
-                        <td><%= data.Sal %></td>
-                        <td><%= data.Deptno %></td>
-                    </tr>
-                <% }); %>
+    <h1>
+        <%= title %>
+    </h1>
+
+    <% if(action==='add' ) { %>
+        <form method="post" action="/employee/add_sample">
+            Name: <input type="text" id="name" name="name" required>
+            Age: <input type="number" id="age" name="age" required>
+            <input type="submit" name="sub" value="Add">
+        </form>
+        <% } else if(action==='edit' ) { %>
+            <form method="post" action="/employee/edit/<%= employeedata.name %>">
+                Name: <input type="text" id="name" name="name" value="<%= employeedata.name %>" required>
+                Age: <input type="number" id="age"  name="age" value="<%= employeedata.age %>" required>
+                <input type="submit" value="Edit">
+            </form>
             <% } else { %>
-                <tr><td>No Data Found</td></tr>
-            <% } %>
-        </table>
-    <% } %>
+                <a href="/employee/add">Add</a>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                    </tr>
+                    <% if(employeedata && employeedata.length> 0) { %>
+                        <% employeedata.forEach(function(data) { %>
+                            <tr>
+                                <td>
+                                    <%= data.name %>
+                                </td>
+                                <td>
+                                    <%= data.age %>
+                                </td>
+                                <td><a href="/employee/edit/<%= data.name %>">Edit</a></td>
+                            </tr>
+                            <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="3">No Data Found</td>
+                                    </tr>
+                                    <% } %>
+                </table>
+                <% } %>
 </body>
+
 </html>

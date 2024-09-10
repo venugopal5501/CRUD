@@ -1,11 +1,11 @@
 const database = require('mssql');
 
 var dbconfig = {
-    server: 'DINCD-101',
+    server: 'localhost',
     port: 1433,
-    database: 'VenuGopal',
-    user: 'Training',
-    password: 'Training@123',
+    database: 'venugopal',
+    user: 'sa',
+    password: 'Venugopal@123',
     trustServerCertificate: true
 }
 
